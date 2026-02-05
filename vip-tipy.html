@@ -272,86 +272,6 @@
       color: rgba(255, 255, 255, 0.85);
       font-size: 1rem;
       line-height: 1.6;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-
-    .tips-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .tip-card {
-      background: rgba(12, 17, 28, 0.7);
-      border: 1px solid rgba(0, 168, 232, 0.3);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-    }
-
-    .tip-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 168, 232, 0.6);
-      box-shadow: 0 4px 16px rgba(0, 168, 232, 0.2);
-    }
-
-    .tip-sport {
-      display: inline-block;
-      color: #8EDCEE;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.75rem;
-      padding: 0.25rem 0.75rem;
-      background: rgba(142, 220, 238, 0.1);
-      border-radius: 6px;
-    }
-
-    .tip-match {
-      color: #fff;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      line-height: 1.4;
-    }
-
-    .tip-bet {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.95rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .tip-odds {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-top: 1rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .tip-odds-label {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .tip-odds-value {
-      font-size: 1.5rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, #d4af37 0%, #f4e4a6 25%, #c9a227 50%, #e8d48b 75%, #b8860b 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .empty-state {
-      text-align: center;
-      padding: 3rem 2rem;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1rem;
       font-weight: 500;
     }
 
@@ -361,9 +281,6 @@
       }
       .odds-section-title {
         font-size: 1.5rem;
-      }
-      .tips-grid {
-        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -402,128 +319,38 @@
   <main class="vip-page">
     <div class="vip-header">
       <h1 class="vip-title">VIP Tipy</h1>
-      <p class="vip-subtitle">Exkluzívne tipy s vyššou úspešnosťou, rozdelené podľa veľkosti kurzov</p>
+      <p class="vip-subtitle">Vyberte si kategóriu podľa veľkosti kurzov</p>
     </div>
 
     <div class="odds-sections">
-      <!-- VEĽKÉ KURZY -->
       <section class="odds-section">
         <div class="odds-section-header">
           <div class="odds-section-icon">🔥</div>
-          <h2 class="odds-section-title">VEĽKÉ KURZY</h2>
+          <h2 class="odds-section-title">VYSOKÉ KURZY</h2>
         </div>
         <p class="odds-section-description">
           Tipy s vysokými kurzmi (nad 2.50) – vyššie riziko, ale aj vyšší potenciálny zisk. Ideálne pre skúsených tipujúcich, ktorí hľadajú hodnotu v nečakaných výsledkoch.
         </p>
-        <div class="tips-grid">
-          <div class="tip-card">
-            <span class="tip-sport">Futbal</span>
-            <div class="tip-match">Manchester United vs Liverpool</div>
-            <div class="tip-bet">Liverpool víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">3.20</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Hokej</span>
-            <div class="tip-match">Slovan Bratislava vs HC Košice</div>
-            <div class="tip-bet">Over 5.5 gólov</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">2.75</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Tenis</span>
-            <div class="tip-match">Djokovic vs Nadal</div>
-            <div class="tip-bet">Nadal 2:0</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">4.10</span>
-            </div>
-          </div>
-        </div>
       </section>
 
-      <!-- STREDNÉ KURZY -->
       <section class="odds-section">
         <div class="odds-section-header">
           <div class="odds-section-icon">⚡</div>
           <h2 class="odds-section-title">STREDNÉ KURZY</h2>
         </div>
         <p class="odds-section-description">
-          Tipy so strednými kurzmi (1.80 - 2.50) – vyvážený pomer rizika a zisku. Najčastejšie používané tipy s dobrým potenciálom úspešnosti.
+          Tipy so strednými kurzmi (1.80 – 2.50) – vyvážený pomer rizika a zisku. Najčastejšie používané tipy s dobrým potenciálom úspešnosti.
         </p>
-        <div class="tips-grid">
-          <div class="tip-card">
-            <span class="tip-sport">Futbal</span>
-            <div class="tip-match">Barcelona vs Real Madrid</div>
-            <div class="tip-bet">Barcelona víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">2.10</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Hokej</span>
-            <div class="tip-match">HC Banská Bystrica vs HK Nitra</div>
-            <div class="tip-bet">HC Banská Bystrica víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">1.95</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Basketbal</span>
-            <div class="tip-match">Boston Celtics vs LA Lakers</div>
-            <div class="tip-bet">Over 220.5 bodov</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">2.00</span>
-            </div>
-          </div>
-        </div>
       </section>
 
-      <!-- MALÉ KURZY -->
       <section class="odds-section">
         <div class="odds-section-header">
           <div class="odds-section-icon">💎</div>
-          <h2 class="odds-section-title">MALÉ KURZY</h2>
+          <h2 class="odds-section-title">NÍZKE KURZY</h2>
         </div>
         <p class="odds-section-description">
           Tipy s nízkymi kurzmi (do 1.80) – nižšie riziko, stabilnejšie výsledky. Ideálne pre kombinácie a dlhodobé stratégie s konzistentným ziskom.
         </p>
-        <div class="tips-grid">
-          <div class="tip-card">
-            <span class="tip-sport">Futbal</span>
-            <div class="tip-match">Bayern München vs Augsburg</div>
-            <div class="tip-bet">Bayern víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">1.45</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Tenis</span>
-            <div class="tip-match">Federer vs Qualifier</div>
-            <div class="tip-bet">Federer víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">1.30</span>
-            </div>
-          </div>
-          <div class="tip-card">
-            <span class="tip-sport">Hokej</span>
-            <div class="tip-match">Tampa Bay vs Ottawa</div>
-            <div class="tip-bet">Tampa Bay víťaz</div>
-            <div class="tip-odds">
-              <span class="tip-odds-label">Kurz:</span>
-              <span class="tip-odds-value">1.65</span>
-            </div>
-          </div>
-        </div>
       </section>
     </div>
   </main>

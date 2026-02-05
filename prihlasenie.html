@@ -251,6 +251,9 @@
       font-weight: 500;
       cursor: pointer;
     }
+    .form-row-checkbox {
+      margin-top: -0.25rem;
+    }
     .form-forgot {
       color: #8EDCEE;
       text-decoration: none;
@@ -316,6 +319,15 @@
       color: #00B140;
       text-decoration: underline;
     }
+    .form-error {
+      color: #ff6b6b;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 0.25rem;
+    }
+    .form-group.has-error input {
+      border-color: #ff6b6b;
+    }
   </style>
 </head>
 <body>
@@ -350,12 +362,13 @@
       <h1 class="login-heading">Prihlásenie</h1>
       <p class="login-sub">Zadajte svoje prihlasovacie údaje</p>
 
-      <form class="login-form" action="#" method="post">
-        <div class="form-group">
+      <form class="login-form" id="loginForm" action="javascript:void(0)" onsubmit="return false;">
+        <div id="loginError" class="form-error" style="display: none;"></div>
+        <div class="form-group" id="emailGroup">
           <label for="email">E-mail alebo používateľské meno</label>
           <input type="text" id="email" name="email" placeholder="vas@email.sk" required autocomplete="username">
         </div>
-        <div class="form-group">
+        <div class="form-group" id="passwordGroup">
           <label for="password">Heslo</label>
           <input type="password" id="password" name="password" placeholder="••••••••" required autocomplete="current-password">
         </div>
@@ -365,6 +378,12 @@
             <label for="remember">Zapamätať si ma</label>
           </div>
           <a href="#" class="form-forgot">Zabudnuté heslo?</a>
+        </div>
+        <div class="form-row form-row-checkbox">
+          <div class="form-checkbox">
+            <input type="checkbox" id="showPassword" aria-label="Zobraziť heslo">
+            <label for="showPassword">Zobraziť heslo</label>
+          </div>
         </div>
         <button type="submit" class="btn-submit">Prihlásiť sa</button>
       </form>
@@ -380,5 +399,96 @@
     </div>
   </main>
 
+  <script>
+    (function() {
+      const DEMO_EMAIL = 'demo@picklab.sk';
+      const DEMO_PASSWORD = 'demo123';
+      const STORAGE_REMEMBER = 'picklab_remember';
+      const STORAGE_EMAIL = 'picklab_remember_email';
+      const SESSION_USER = 'picklab_user';
+
+      const form = document.getElementById('loginForm');
+      const emailInput = document.getElementById('email');
+      const passwordInput = document.getElementById('password');
+      const rememberCheckbox = document.getElementById('remember');
+      const showPasswordCheckbox = document.getElementById('showPassword');
+      const loginError = document.getElementById('loginError');
+      const emailGroup = document.getElementById('emailGroup');
+      const passwordGroup = document.getElementById('passwordGroup');
+
+      function showError(msg) {
+        loginError.textContent = msg;
+        loginError.style.display = 'block';
+        emailGroup.classList.add('has-error');
+        passwordGroup.classList.add('has-error');
+      }
+
+      function hideError() {
+        loginError.textContent = '';
+        loginError.style.display = 'none';
+        emailGroup.classList.remove('has-error');
+        passwordGroup.classList.remove('has-error');
+      }
+
+      function prefillRemember() {
+        try {
+          if (localStorage.getItem(STORAGE_REMEMBER) === '1') {
+            const saved = localStorage.getItem(STORAGE_EMAIL);
+            if (saved) {
+              emailInput.value = saved;
+              rememberCheckbox.checked = true;
+            }
+          }
+        } catch (e) {}
+      }
+
+      function saveRemember() {
+        try {
+          if (rememberCheckbox.checked) {
+            localStorage.setItem(STORAGE_REMEMBER, '1');
+            localStorage.setItem(STORAGE_EMAIL, emailInput.value.trim());
+          } else {
+            localStorage.removeItem(STORAGE_REMEMBER);
+            localStorage.removeItem(STORAGE_EMAIL);
+          }
+        } catch (e) {}
+      }
+
+      prefillRemember();
+
+      showPasswordCheckbox.addEventListener('change', function() {
+        passwordInput.type = this.checked ? 'text' : 'password';
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        hideError();
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        if (!email || !password) {
+          showError('Vyplňte prosím e-mail aj heslo.');
+          return;
+        }
+
+        if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+          saveRemember();
+          sessionStorage.setItem(SESSION_USER, JSON.stringify({
+            email: email,
+            name: 'Demo používateľ',
+            loginAt: new Date().toISOString()
+          }));
+          window.location.href = 'picklab-app.html';
+          return;
+        }
+
+        showError('Nesprávny e-mail alebo heslo. Pre demo použite: demo@picklab.sk / demo123');
+      });
+
+      emailInput.addEventListener('input', hideError);
+      passwordInput.addEventListener('input', hideError);
+    })();
+  </script>
 </body>
 </html>

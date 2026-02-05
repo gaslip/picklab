@@ -435,11 +435,15 @@
     <div class="nav-block">
       <nav class="nav">
         <a href="#">Tipy</a>
-        <a href="#" class="nav-vip">VIP Tipy</a>
+        <a href="vip-tipy.html" class="nav-vip">VIP Tipy</a>
         <a href="statistiky.html">Štatistiky</a>
         <a href="#blog">Blog</a>
         <a href="#">Kontakt</a>
-        <a href="prihlasenie.html" class="btn-cta">Prihlásiť</a>
+        <a href="prihlasenie.html" class="btn-cta" id="navLogin">Prihlásiť</a>
+        <span id="navUser" style="display: none;">
+          <span class="nav-user-name" style="color: #8EDCEE; font-size: 0.9rem; margin-right: 0.5rem;"></span>
+          <a href="#" class="btn-cta" id="navLogout">Odhlásiť sa</a>
+        </span>
       </nav>
       <a href="https://www.instagram.com/picklab_bet/" class="nav-social" target="_blank" rel="noopener" aria-label="Instagram PICKLAB">
         <svg class="icon-instagram" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -461,7 +465,7 @@
       </p>
       <div class="hero-columns">
         <a href="#" class="body-tips-col">Tipy</a>
-        <a href="#" class="body-vip-col">VIP Tipy</a>
+        <a href="vip-tipy.html" class="body-vip-col">VIP Tipy</a>
       </div>
     </div>
     <div class="hero-content hero-content-right">
@@ -502,8 +506,40 @@
           Špecializujem sa na futbal a hokej. Pred PICKLABom som pôsobil v športových médiách a naučil som sa čítať zápasy inak — nie len výsledok, ale aj príčiny. Tu píšem analýzy a zdieľam to, čo nám v tíme pomáha dlhodobo vyhrávať.
         </p>
       </article>
+      <article class="blog-intro">
+        <h3 class="blog-intro-name">Jakub Novák</h3>
+        <p class="blog-intro-text">
+          Venujem sa najmä tenisu a basketbalu. Mojou silnou stránkou je analýza individuálnych štatistík hráčov a tímov. Pomáhame vám nájsť tie správne tipy na základe detailného skúmania formy a histórie.
+        </p>
+      </article>
     </div>
   </section>
 
+  <script>
+    (function() {
+      const SESSION_USER = 'picklab_user';
+      const navLogin = document.getElementById('navLogin');
+      const navUser = document.getElementById('navUser');
+      const navUserName = navUser.querySelector('.nav-user-name');
+      const navLogout = document.getElementById('navLogout');
+
+      try {
+        const raw = sessionStorage.getItem(SESSION_USER);
+        if (raw) {
+          const user = JSON.parse(raw);
+          navLogin.style.display = 'none';
+          navUser.style.display = 'inline-flex';
+          navUser.style.alignItems = 'center';
+          navUserName.textContent = user.name || user.email || 'Používateľ';
+        }
+      } catch (e) {}
+
+      navLogout.addEventListener('click', function(e) {
+        e.preventDefault();
+        sessionStorage.removeItem(SESSION_USER);
+        window.location.reload();
+      });
+    })();
+  </script>
 </body>
 </html>

@@ -239,22 +239,12 @@
     }
 
     .odds-section-ultra {
-      border-color: rgba(212, 175, 55, 0.5);
-      background: rgba(20, 27, 45, 0.75);
-      position: relative;
+      border-color: rgba(212, 175, 55, 0.55);
+      background: rgba(20, 27, 45, 0.8);
+      box-shadow: 0 4px 24px rgba(212, 175, 55, 0.15);
     }
-    .odds-section-ultra::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      border-radius: 18px;
-      padding: 2px;
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.6), rgba(244, 228, 166, 0.3));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+    .odds-section-ultra:hover {
+      box-shadow: 0 12px 40px rgba(212, 175, 55, 0.25);
     }
 
     .odds-section-header {
